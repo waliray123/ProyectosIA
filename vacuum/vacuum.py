@@ -13,11 +13,15 @@ class Vacuum:
         if(self.position > 0):
             self.position -= 1
             stdscr.addstr(3, 0, "ASPIRADORA SE MOVIO A LA IZQUIERDA")
+        else:
+            stdscr.addstr(3, 0, "ASPIRADORA NO HACE NADA")
     
     def moveRight(self,stdscr):
         if(self.position < 1):
             self.position += 1
             stdscr.addstr(3, 0, "ASPIRADORA SE MOVIO A LA DERECHA")
+        else:
+            stdscr.addstr(3, 0, "ASPIRADORA NO HACE NADA")
     
     def dirtyARoom(self,room):
         self.world[room] = True        
@@ -84,8 +88,8 @@ exit_event = threading.Event()
 def setVacuum(stdscr, vacuum):
     while not exit_event.is_set():
         stdscr.clear()
-        #vacuum.dumbMode(stdscr)
-        vacuum.smartMode(stdscr)
+        vacuum.dumbMode(stdscr)
+        #vacuum.smartMode(stdscr)
         stdscr.addstr(0, 0, vacuum.printVacuum())
         stdscr.refresh()
         time.sleep(1)
