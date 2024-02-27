@@ -50,15 +50,16 @@ class Vacuum:
         #Find the trash and try to clean
         #Prioritize cleaning the room
         #Only for 2 rooms
-        if self.world[0] or self.world[1]:
-            if self.world[self.position]:
+        if self.position == 0:
+            if self.world[0]:
                 self.cleanARoom(stdscr)
-            elif self.position == 0:
-                self.moveRight(stdscr)
             else:
-                self.moveLeft(stdscr)
+                self.moveRight(stdscr)
         else:
-            self.doNothing(stdscr)
+            if self.world[1]:
+                self.cleanARoom(stdscr)
+            else:
+                self.moveLeft(stdscr)      
     
     def printVacuum(self):
         roomsToPrint = ""
@@ -88,8 +89,8 @@ exit_event = threading.Event()
 def setVacuum(stdscr, vacuum):
     while not exit_event.is_set():
         stdscr.clear()
-        vacuum.dumbMode(stdscr)
-        #vacuum.smartMode(stdscr)
+        #vacuum.dumbMode(stdscr)
+        vacuum.smartMode(stdscr)
         stdscr.addstr(0, 0, vacuum.printVacuum())
         stdscr.refresh()
         time.sleep(1)
