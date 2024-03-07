@@ -17,13 +17,14 @@ class World:
             ('c1-served', 'serve-c1-wait', 'served', 'no-coin'),
             ('c2-served', 'serve-c2-wait', 'served', 'no-coin'),
             ('c3-served', 'serve-c3-wait', 'served', 'no-coin'),
-            ('yes-coin', 'ask-for-code', 'coin', 'yes-coin')
+            ('yes-coin', 'ask-for-code', 'coin', 'yes-coin'),
+            #('c1-served', 'serve-c1-wait', 'coin', 'yes-coin'),
         ]
-        self.actions = {"ask-for-coin": "Pedir moneda",
-        	"ask-for-code": "Pedir codigo",
-        	"serve-c1-wait": "Sirviendo refresco 1 y esperar",
-        	"serve-c2-wait": "Sirviendo refresco 2 y esperar",
-        	"serve-c3-wait": "Sirviendo refresco 3 y esperar"
+        self.actions = {"ask-for-coin": "Ask for coin",
+        	"ask-for-code": "Ask for code",
+        	"serve-c1-wait": "Serving soda 1 & wait",
+        	"serve-c2-wait": "Serving soda 2 & wait",
+        	"serve-c3-wait": "Serving soda 3 & wait"
         }
     
     def updateStatus(self,presentStatus,presentAction,perception):
@@ -51,14 +52,14 @@ textToPrint = world.actions[presentAction]
 print(textToPrint) 
 
 while(True):
-    print("Ingrese una percepcion")
+    print("Insert a perception")
     perception = input()
     presentStatus = world.updateStatus(presentStatus,presentAction,perception)
     presentAction = world.rules[presentStatus] #Two steps in one: regla = reglas[estado]; accion = regla;
     textToPrint = world.actions[presentAction]
 
-    print("Status:" + presentStatus)
-    print("Action:" + presentAction)
+    #print("Status:" + presentStatus)
+    #print("Action:" + presentAction)
     print(textToPrint)
 
 
