@@ -1,0 +1,32 @@
+Estados:	'vc1-c1clean-c2clean','vc1-c1dirt-c2clean','vc1-c1clean-c2dirt','vc1-c1dirt-c2dirt','vc2-c1clean-c2clean','vc2-c1dirt-c2clean','vc2-c1clean-c2dirt','vc2-c1dirt-c2dirt'
+
+Percepcion: 'left','right','clean','dirt1','dirt2'
+
+Reglas: {}
+	
+acciones: {
+
+}
+
+estado = 
+accion = 
+
+agente:
+mientras(verdadero)
+	Escribir "ingresar percepcion"
+	leer(percepcion)
+	
+	estado = actualizar-estado(estado, accion, percepcion)
+	regla = reglas[estado]
+	accion = regla
+	textoAccion = acciones[accion]
+	Escribir textoAccion
+fimientras
+
+Modelo: 	
+	
+actualizar-estado(estado, accion, percepcion)
+	si(exiteEnModelo(estado, accion, percepcion)) entonces
+		retornar Modelo[estado, accion, percepcion]
+	sino
+		retornar "en-casilla-1"
