@@ -17,6 +17,7 @@ class World:
             ('c1-served', 'serve-c1-wait', 'served', 'no-coin'),
             ('c2-served', 'serve-c2-wait', 'served', 'no-coin'),
             ('c3-served', 'serve-c3-wait', 'served', 'no-coin'),
+            ('c3-served', 'serve-c3-wait', 'coin', 'yes-coin'),
             ('yes-coin', 'ask-for-code', 'coin', 'yes-coin'),
             #('c1-served', 'serve-c1-wait', 'coin', 'yes-coin'),
         ]
