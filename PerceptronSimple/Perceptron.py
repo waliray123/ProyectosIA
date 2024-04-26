@@ -68,9 +68,6 @@ w1 = round(random.random(), 2)
 w2 = round(random.random(), 2)
 umbral = round(random.random(), 2)
 
-# Datos de entrenamiento
-entradas = [(0, 0), (0, 1), (1, 0), (1, 1)]
-
 entradas1 = [0,0,1,1] # valores de X1
 entradas2 = [0,1,0,1] # valores de X2
 
