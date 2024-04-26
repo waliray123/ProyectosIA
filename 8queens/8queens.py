@@ -82,25 +82,23 @@ def selecctionOfParentsToMix(allAptitudes,arrayOfQueens,nParents):
 #Get the index
 #Return the sons
 def mergeParentsOfArraysOfQueens(indexOfParents, arrayOfQueens):
-    print("The parents are: ")
-    print(arrayOfQueens[indexOfParents[0]])
-    print(arrayOfQueens[indexOfParents[1]])
+    #print("The parents are: ")
+    #print(arrayOfQueens[indexOfParents[0]])
+    #print(arrayOfQueens[indexOfParents[1]])
     
     sonsToReturn = []
-    pointToMerge = random.randint(0,7)
-    print("The point is")
-    print(pointToMerge)
-    newSon = []
-    newSon2 = []
+    newSon = []    
+    newSon2 = []    
+    pointToMerge = random.randint(0,7)    
     for indexGen in range(8):
-        if(pointToMerge < indexGen):
+        if(pointToMerge > indexGen):
             newSon.append(arrayOfQueens[indexOfParents[0]][indexGen])
             newSon2.append(arrayOfQueens[indexOfParents[1]][indexGen])
         else:
-            newSon2.append(arrayOfQueens[indexOfParents[0]][indexGen])
             newSon.append(arrayOfQueens[indexOfParents[1]][indexGen])
-    sonsToReturn.append(newSon)
-    sonsToReturn.append(newSon2)
+            newSon2.append(arrayOfQueens[indexOfParents[0]][indexGen])        
+    sonsToReturn.append(newSon)    
+    sonsToReturn.append(newSon2)    
         
     return sonsToReturn
     
@@ -117,33 +115,41 @@ valTest2 = [[8,7,6,5,4,3,2,1]]
 objectiveFunction = 0
 quantityOfArraysOfQueens = 10
 nParents = 2
-nSons = 1 # n Sons is nSons * 2
+nSons = 5 # n Sons is nSons * 2
 
 #Generate init pob
 arraysOfQueens = generateQuantityOfArraysOfQueens(quantityOfArraysOfQueens)
 
-#Generate all aptitude of all arrays
-allaptitudes = reviewArraysOfArraysOfQueens(arraysOfQueens)
+
+isResolved = -1
+while (isResolved == -1) :
+    #Generate all aptitude of all arrays
+    allaptitudes = reviewArraysOfArraysOfQueens(arraysOfQueens)
+    print(f"aptitudes {allaptitudes}")
+
+    #Review if is resolved
+    isResolved = reviewIfIsResolved(allaptitudes)
+    #print(f"resolved {isResolved}")
 
 
-#Review if is resolved
-isResolved = reviewIfIsResolved(allaptitudes)
-if(isResolved != -1):
-    print(f"The array {allaptitudes[isResolved]}")
-else:
-    for i in range(nSons):
-        parentsOfArraysOfQueens = selecctionOfParentsToMix(allaptitudes,arraysOfQueens,nParents)                
-        #Merge the parents
-        sonOfArrayOfQueen = mergeParentsOfArraysOfQueens(parentsOfArraysOfQueens,arraysOfQueens)
-        print("The son are:")
-        print(sonOfArrayOfQueen)
+    if(isResolved != -1):
+        print(f"The array {allaptitudes[isResolved]}")
+    else:
+        newArrayOfQueens = []
+        for i in range(nSons):
+            parentsOfArraysOfQueens = selecctionOfParentsToMix(allaptitudes,arraysOfQueens,nParents)                
+            #Merge the parents
+            sonsOfArrayOfQueen = mergeParentsOfArraysOfQueens(parentsOfArraysOfQueens,arraysOfQueens)
+            for sonOfArrayOfQueen in sonsOfArrayOfQueen:
+                newArrayOfQueens.append(sonOfArrayOfQueen)        
+        arraysOfQueens = newArrayOfQueens    
+        
 
 
 
 
 
-print(arraysOfQueens)
-print(allaptitudes)
+
 
 
 
