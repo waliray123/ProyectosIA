@@ -73,13 +73,17 @@ entradas2 = [0,1,0,1] # valores de X2
 
 salidaDeseadas = [0, 1, 1, 1] # salidas de Y usando OR
 salidaDeseadas2 = [0, 0, 0, 1] # salidas de Y usando AND
+salidaDeseadas3 = [0, 1, 1, 0] # salidas de Y usando XOR, Aqui falla
+salidaDeseadas4 = [1, 1, 1, 0] # salidas de Y usando NAND
+salidaDeseadas5 = [1, 0, 0, 0] # salidas de Y usando NOR, no se como funciona pero funciona
+salidaDeseadas6 = [1, 0, 0, 1] # salidas de Y usando XNOR, Aqui tambien falla
 
 # Crear perceptron
 perceptron = Perceptron(w1, w2, umbral, tasa)
 
 # Entrenar el perceptron
 while (perceptron.errorPromedioEntrenamiento > 1):
-    perceptron.entrenar(entradas1,entradas2, salidaDeseadas2)
+    perceptron.entrenar(entradas1,entradas2, salidaDeseadas6)
     print("Error promedio: ", perceptron.errorPromedioEntrenamiento)
 
 
